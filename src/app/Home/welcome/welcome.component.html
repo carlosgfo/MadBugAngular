@@ -1,0 +1,35 @@
+<p>
+  welcome {{model.name}} {{model.lastName}}!
+</p>
+<div class="ui input">
+  <a class="ui image label raised segment">  
+    <input type="text" [(ngModel)]="model.name">
+    <input type="text" [(ngModel)]="model.lastName">
+    {{model.name.length + model.lastName.length}}
+  </a>
+</div>
+<div class="ui checkbox">
+  <input type="checkbox" [(ngModel)]="model.gender">
+  <label>Gender</label>
+</div>
+<button class="ui button active" (click)="clicked()">Click me!</button>
+<img  [ngStyle]="{'max-width.px': model.photoWidth}" src="{{model.photo}}">
+
+<div class="ui message raised segment" [ngClass]="{'femenino':model.gender,'masculino':!model.gender}">
+  <div class=header>
+    Selected Gender
+    <div *ngIf="model.gender">FEMENINO</div>
+    <div *ngIf="!model.gender">MASCULINO</div>
+  </div>
+</div>
+
+<button class="ui button active" (click)="addItem()">Add</button>
+<button class="ui button active" (click)="removeItem()">Remove</button>
+
+<ul class="ui bulleted list" *ngFor="let item of myArray">
+  <li class="item" (click)="selectItem(item)">{{item}}</li>
+</ul>
+
+<!-- <pre>
+  {{model | json}}
+</pre> -->

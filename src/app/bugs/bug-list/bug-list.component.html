@@ -1,0 +1,43 @@
+<br>
+<div class="ui main container">
+  <div class="row ui">
+    <h1 class="ui header">Bugs</h1>          
+    <button class="ui labeled icon button" [routerLink]="['/addbug/']">
+        <i class="plus square outline icon"></i>
+        Add
+    </button>     
+  </div>
+  <hr>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Steps</th>
+        <th>Created</th>
+        <th>Severity</th>
+        <th>Fixed</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of bugs" [ngClass]="{'negative':!item.isFixed}">
+        <td>{{item.title | uppercase}}</td>
+        <td>{{item.body}}</td>
+        <td>{{item.stepsToReproduce}}</td>
+        <td>{{item.createdAt | fromnow }}</td>
+        <td class="center aligned"><app-severity [severityRange]='item.severity'></app-severity></td>
+        <!--<td [ngClass]="{'error':item.severity>0}">{{item.severity}}</td>-->
+        <td class="center aligned">
+            <i class="large icon" [ngClass]="{'green checkmark':item.isFixed, 'red remove':!item.isFixed}"></i>
+        </td> 
+        <td><a [routerLink]="['/bugs/',item.id]">Detail</a></td>
+        <td><a [routerLink]="['/editbug/',item.id]"><i class="edit icon"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+

@@ -1,0 +1,51 @@
+<br>
+<div class="ui main container">  
+  <h1 class="ui header teal">New Bug</h1>
+  <hr>
+  <form novalidate (ngSubmit)="save()" [formGroup]="addBugForm" class="ui form">
+    <div class="field" [ngClass]="{'error':addBugForm.get('title').touched && addBugForm.get('title').invalid}">
+      <label>Title:( {{120 - addBugForm.get('title').value.length}} )</label>
+      <input type="text" placeholder="title" formControlName="title">
+      <div class="ui pointing red basic label"
+      *ngIf="addBugForm.get('title').touched
+            &&addBugForm.get('title').errors
+            &&addBugForm.get('title').errors.maxlength">Max length reached</div>
+    </div>
+    <div class="field"  [ngClass]="{'error':addBugForm.get('body').touched && addBugForm.get('body').invalid}">
+      <label>Body: ( {{500 - addBugForm.get('body').value.length}} )</label>
+      <textarea placeholder="body" rows=4 formControlName="body"></textarea>
+      <div class="ui pointing red basic label"
+      *ngIf="addBugForm.get('body').touched
+            &&addBugForm.get('body').errors
+            &&addBugForm.get('body').errors.maxlength">Max length reached</div>
+    </div>
+    <div class="field" [ngClass]="{'error':addBugForm.get('stepsToReproduce').touched && addBugForm.get('stepsToReproduce').invalid}">
+      <label>Steps to reproduce the issue: ( {{250 - addBugForm.get('stepsToReproduce').value.length}} )</label>
+      <textarea placeholder="Steps to Reproduce" rows=4 formControlName="stepsToReproduce"></textarea>
+    </div>
+    <div class="field">
+        <div class="ui checkbox">
+            <input type="checkbox" formControlName="isFixed">
+            <label>Is Fixed</label>
+          </div>
+    </div>
+    <!--Severity here // custom component coming soon-->
+  
+    <div class="field">
+        <span>Severity</span>
+        <select class="ui dropdown button" formControlName="severity">
+          <option value="">Select</option>
+          <option value="1"><i class="1 large circle icon green"></i> Normal</option>
+          <option value="2"><i class="2 large circle icon orange"></i> Critical</option>
+          <option value="3"><i class="3 large circle icon red"></i> Fatal</option>
+        </select>
+    </div>
+    <div class="ui right aligned">
+      <button class="ui button green right floated" type="submit" [disabled]="addBugForm.invalid">Save</button>
+    </div>
+  </form>
+    <br>
+    <br>
+    <br>
+    <a class="ui button" [routerLink]="['/bugs']"><i class="chevron left icon"></i>Back</a>
+</div>

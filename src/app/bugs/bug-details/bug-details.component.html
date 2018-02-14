@@ -1,0 +1,46 @@
+<br>
+<div class="ui main container">
+    <div class="row">
+        <h1 class="ui header">Bug Detail</h1>
+    </div>
+  <hr>
+<!-- <p>
+    {{bug|json}}
+  </p> -->
+<div class="ui cards centered">
+  <div class="ui card">
+      <div class="content">
+        <div class="header">{{bug.title}}        
+        </div>
+      </div>
+      <div class="content">
+        <h4 class="ui sub header " *ngIf="bug.isFixed"><i class="green checkmark icon"></i>Fixed</h4>
+        <h4 class="ui sub header" *ngIf="!bug.isFixed"><i class="red remove icon"></i>Not Fixed</h4>
+        <div class="ui small feed">
+          <div class="event">
+            <div class="content">
+              <div class="summary">
+                 {{bug.body}}
+              </div>
+            </div>
+          </div>
+          <div class="event">
+              <div class="content">
+                <div class="summary">
+                   Steps:&nbsp; {{bug.stepsToReproduce}}
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="content">
+          <span>Modified By: &nbsp;</span><p class="ui label" *ngIf="bug.modifiedBy">&nbsp; {{bug.modifiedBy.displayName}}  {{bug.modifiedAt|fromnow}}</p>
+      </div>    
+      <div class="extra content">
+        <span>Created by: &nbsp;</span><p class="ui label" *ngIf="bug.createdBy">{{bug.createdBy.displayName}}  {{bug.createdAt|fromnow}}</p>
+      </div>
+  </div>  
+</div>
+<br>
+  <a class="ui button" [routerLink]="['/bugs']"><i class="chevron left icon"></i>Back</a>
+</div>
